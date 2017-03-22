@@ -7,7 +7,7 @@ public class BSTree {
 	public TreeNode root;
 
 	/**
-	 * ²åÈë½Úµã
+	 * ï¿½ï¿½ï¿½ï¿½Úµï¿½
 	 * 
 	 * @param payload
 	 */
@@ -22,14 +22,14 @@ public class BSTree {
 	}
 
 	/**
-	 * ÖĞĞò ´òÓ¡
+	 * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ó¡
 	 */
 	public void printSelf() {
 		innerPrintSelf(root);
 	}
 
 	/**
-	 * ²éÕÒ
+	 * ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param payload
 	 * @return
@@ -122,19 +122,53 @@ public class BSTree {
 			}
 		} else { // left!=null ,right!=null
 			TreeNode nextNode = findNext(payload);
-			if(nextNode==treeNode.right){  //µ±Ç°ÒªÉ¾³ıµÄ½ÚµãµÄºó¼Ì ÊÇ Ëü×Ô¼ºµÄ ÓÖº¢×Ó£¬´ËÊ±ËüÓÒº¢×ÓµÄ×óº¢×ÓÒ»¶¨Îª¿Õ
-				nextNode.left=treeNode.left;
+			if(nextNode==treeNode.right){  //ï¿½ï¿½Ç°ÒªÉ¾ï¿½ï¿½Ä½Úµï¿½Äºï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Öºï¿½ï¿½Ó£ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Òºï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Îªï¿½ï¿½
+				if(treeNode.left!=null){
+					nextNode.left=treeNode.left;
+					treeNode.left.parent=nextNode;					
+				}
+				
 				if (treeNode.parent != null) {
 					if (treeNode.parent.left == treeNode) {
 						treeNode.parent.left = nextNode;
 					} else {
 						treeNode.parent.right = nextNode;
 					}
+					nextNode.parent=treeNode.parent;
 				}
 			}else{
+				//å…ˆç”¨ åç»§ çš„å³å­©å­ ä»£æ›¿ åç»§ä½ç½®
+				if(nextNode.parent!=null){
+					if(nextNode.parent.left==nextNode){
+						nextNode.parent.left=nextNode.right;
+					}else{
+						nextNode.parent.right=nextNode.right;
+					}
+					if(nextNode.right!=null){
+						nextNode.right.parent=nextNode.parent;						
+					}
+				}
+				
+				
+				//å†å°† åç»§ å»ä»£æ›¿ å½“å‰èŠ‚ç‚¹
 				nextNode.left=treeNode.left;
+				nextNode.right=treeNode.right;
+				if(nextNode.left!=null){
+					nextNode.left.parent=nextNode;
+				}
+				if(nextNode.right!=null){
+					nextNode.right.parent=nextNode;
+				}
 				
-				
+				if(treeNode.parent!=null){
+					if(treeNode.parent.left==treeNode){
+						treeNode.parent.left=nextNode;
+					}else{
+						treeNode.parent.right=nextNode;
+					}
+					nextNode.parent=treeNode.parent;
+				}
+
 			}
 		}
 	}

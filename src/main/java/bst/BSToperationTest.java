@@ -5,7 +5,7 @@ public class BSToperationTest {
 	public static void main(String[] args) {
 
 		int[] testData = new int[] { 10, 4, 7, 0, 2, 53, 15, 62,  76, 1, 5,
-				3, 8 };
+				3, 8 ,6};
 
 		BSTree mytree = new BSTree();
 
@@ -15,7 +15,7 @@ public class BSToperationTest {
 
 		mytree.printSelf();
 
-		TreeNode treeNode = mytree.search(62);
+/*		TreeNode treeNode = mytree.search(62);
 		System.out.println("treeNode:" + treeNode.payload);
 
 		System.out.println("minValue:" + mytree.min(mytree.root).payload);
@@ -23,6 +23,10 @@ public class BSToperationTest {
 		System.out.println("maxValue:" + mytree.max(mytree.root).payload);
 		
 		System.out.println(mytree.findNext(15).payload);
-		System.out.println(mytree.findPre(15).payload);
+		System.out.println(mytree.findPre(15).payload);*/
+		
+		/*mytree.delete(15);*//*mytree.delete(0);*//*mytree.delete(53);*/mytree.delete(4);
+		System.out.println();
+		mytree.printSelf();
 	}
 }
